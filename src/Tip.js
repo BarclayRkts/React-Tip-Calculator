@@ -62,7 +62,7 @@ class Tip extends Component{
                 />
             
 
-                    <p>Number of people</p>
+                    <p>Number of People</p>
                     <input
                     type={Number}
                     name = 'people'
