@@ -16,26 +16,38 @@ class Tip extends Component{
     }
     handleSubmit(evt){
         evt.preventDefault();
+        if(this.state.bill === ''){
+            alert('Enter Bill');
+        }
+        if(this.state.percentage === ''){
+            alert('Enter Tip %');
+        }
+        if(this.state.people === ''){
+            alert('Enter the Number of People');
+        }
+
         this.setState({
-            totalAmt: ((this.state.bill * this.state.percentage) / this.state.people).toFixed(2)
+            totalAmt: ((this.state.bill * this.state.percentage) / this.state.people).toFixed(2),
+            bill: '',
+            percentage: '',
+            people: ''
         });
-        ////console.log(this.state.totalAmt)
     }
     handleChange(evt){
         this.setState({
             [evt.target.name]: evt.target.value
-        })
-        //console.log(this.state.bill);
-        //console.log(this.state.people);
+        });
     }
     render(){
         return(
             <React.Fragment>
             <h1>Tip Calculator</h1>
             <form onSubmit={this.handleSubmit} className='container'>
+                
                 <div className='containerInput'>
                     <p>Bill</p>
                     <input 
+                    type={Number}
                     name = 'bill'
                     value={this.state.bill}
                     onChange={this.handleChange}
@@ -43,14 +55,16 @@ class Tip extends Component{
 
                     <p>Tip %</p>
                     <input 
+                    type={Number}
                     name = 'percentage'
                     value={this.state.percentage}
                     onChange={this.handleChange}
-                    />
+                />
             
 
                     <p>Number of people</p>
                     <input
+                    type={Number}
                     name = 'people'
                     value={this.state.people} 
                     onChange={this.handleChange}
@@ -68,7 +82,6 @@ class Tip extends Component{
         )
     }
 }
-
 
 export default Tip;
 
